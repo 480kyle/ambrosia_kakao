@@ -1,6 +1,6 @@
-# Project Title
+# ambrosia for kakao
 
-One Paragraph of project description goes here
+This is a chat-bot for kakaotalk
 
 ## Getting Started
 
