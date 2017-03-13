@@ -1,19 +1,19 @@
-var finalhandler = require('finalhandler');
-var http         = require('http');
-var Router       = require('router');
+var express = require('express');
  
-var router = Router();
+var app = express();
 
-router.get('/keyboard', (req, res) => {
+app.get('/keyboard', (req, res) => {
+    console.log("/keyboard");
     const menu = {
         type: 'button',
         buttons: ['와인 추천', '와인 설명', '마리아주']
     };
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(menu));
+  res.setHeader('Content-Type', 'text/json');
+  res.json(menu);
 });
 
-router.post('/message', (req, res) => {
+app.post('/message', (req, res) => {
+    console.log("/message");
     const _obj = {
         user_key: req.body.user_key,
         type: req.body.type,
@@ -34,10 +34,13 @@ router.post('/message', (req, res) => {
             ]
         } 
     };
+
+    res.setHeader('Content-Type', 'text/json');
+    res.json(message);
 });
  
-var server = http.createServer((req, res) => {
-  router(req, res, finalhandler(req, res));
-})
+var appListen = function(){
+    console.log("start server...");
+    app.listen(3000);
+}();
 
-server.listen(3000);
